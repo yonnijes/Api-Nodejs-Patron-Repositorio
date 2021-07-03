@@ -1,8 +1,12 @@
 import express = require('express');
 import { asClass, createContainer } from 'awilix';
-import { TestService } from './services/text.service';
 import { scopePerRequest } from 'awilix-express';
+
+//repositorio
 import { SubscriptionMySQLRepository } from './services/repositories/impl/mysql/subscription.repository';
+
+//servicios
+import { TestService } from './services/text.service';
 import { SubscriptionService } from './services/subscription.service';
 
 
