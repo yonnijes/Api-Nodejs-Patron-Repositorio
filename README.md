@@ -11,7 +11,11 @@ Framework web **express**
 ##  Scripts
 Dentro del directorio
 ### `yarn install`
-### `yarn start`
+### `yarn run start:dev`
 
 
+##  Base de datos
+
+El proyecto hace uso del patrón repositorio y puede intercambiar entre una base de datos y otra, actualmente solo esta emplementado MySQL
+se adjuntan los scripts para MySQL.
 
