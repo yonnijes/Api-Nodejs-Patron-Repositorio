@@ -20,6 +20,9 @@ import loadContainer from './container';
 //express
 const app: express.Application = express();
 
+// JSON Support
+app.use(express.json())
+
 //Container
 loadContainer(app);
 
