@@ -16,6 +16,10 @@ Dentro del directorio
 
 ##  Base de datos
 
-El proyecto hace uso del patrón repositorio y puede intercambiar entre una base de datos y otra, actualmente solo esta emplementado MySQL
-se adjuntan los scripts para MySQL.
+El proyecto hace uso del patrón repositorio y puede intercambiar entre una base de datos y otra, actualmente solo esta emplementado MySQL yMSSQL
+se adjuntan los scripts para MySQL y MSSQL.
 
+##  Pruebas unitarias con MOCHA
+
+Incluye pruebas  a la capa de servicios para corroborar que se comporte de la manera esperada. 
+Dichas pruebas no apuntan a una base de datos real, sino de una base de datos en memoria para facilitar la ejecución de las pruebas.
