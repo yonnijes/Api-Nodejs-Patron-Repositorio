@@ -1,5 +1,5 @@
 import connector from "../../../../common/persistence/mysql.persistence";
-import { Subscription } from "../../domain/subcription";
+import { Subscription } from "../../domain/subscription";
 import { SubscriptionRepository } from "../../subscription.repository";
 
 

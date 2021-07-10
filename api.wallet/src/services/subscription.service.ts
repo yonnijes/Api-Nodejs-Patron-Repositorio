@@ -1,6 +1,6 @@
 import { ApplicationException } from "../common/exceptions/application.exception";
 import { SubscriptionCreateDto, SubscriptionUpdateDto } from "../dptos/subscription.dto";
-import { Subscription } from "./repositories/domain/subcription";
+import { Subscription } from "./repositories/domain/subscription";
 import { SubscriptionRepository } from "./repositories/subscription.repository";
 
 export class SubscriptionService {
