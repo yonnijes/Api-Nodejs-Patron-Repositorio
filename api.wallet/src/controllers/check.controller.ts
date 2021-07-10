@@ -21,4 +21,11 @@ export class CheckController {
         )
 
     }
+
+    // Endpoint to check user payload from jwt
+    @route('/user-payload')
+    @GET()
+    public userPayload(req: Request, res: Response): void {
+        res.send((req as any).user);
+    }
 }
