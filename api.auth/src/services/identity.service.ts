@@ -1,39 +1,37 @@
 
-
-import connection from '../common/persistence/mysql.persistence';
 import { UserCreateDto } from '../dtos/user.dto';
 import { ApplicationException } from '../common/exceptions/application.exception';
 import SHA from 'sha.js';
 import jwt from 'jsonwebtoken';
+import { Identity } from './repositories/domain/identity';
+import { IdentityRepository } from './repositories/identity.repository';
 
-export class IdentityService {
+export class IdentityService { 
+
+    constructor(
+        private readonly IdentityRepository: IdentityRepository
+    ) { }
+
     async authenticate(email: string, password: string): Promise<string> {
-        const con = await connection;
+      
 
         // Hash passowrd
         password = SHA('sha256').update(password).digest('base64');
 
-        const [rows]: any[] = await con.execute(
-            'SELECT * FROM auth_user WHERE email = ? AND password = ?',
-            [email, password]
-        );
-
-      
+        const user = await this.IdentityRepository.find(email, password);
 
         if (process.env.jwt_secret_key) {
             const secretKey: string = process.env.jwt_secret_key;
-           
 
-            if (rows.length) {
-                const token =  jwt.sign({
-                    id: rows[0].id,
-                    email: rows[0].email
-                }, secretKey, { expiresIn: '7h', algorithm: 'ES256' });
-                console.log('-----------------token');
-                console.log(token);
-                return token 
+            if (user) {
+                const token = jwt.sign({
+                    id: user.id,
+                    email: user.email
+                }, secretKey, { expiresIn: '7h' });
 
-            } 
+                return token
+
+            }
         } else {
             throw new Error('Secret key is not defined.');
         }
@@ -42,14 +40,11 @@ export class IdentityService {
     }
 
     async create(user: UserCreateDto): Promise<void> {
-        const con = await connection;
+       
 
         // Hash password
         user.password = SHA('sha256').update(user.password).digest('base64');
 
-        await con.execute(
-            'INSERT INTO auth_user(email, password, created_at) VALUES(?, ?, ?)',
-            [user.email, user.password, new Date()]
-        );
+        await this.IdentityRepository.store(user as Identity);
     }
 }
