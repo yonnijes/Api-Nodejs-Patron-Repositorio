@@ -23,3 +23,6 @@ se adjuntan los scripts para MySQL y MSSQL.
 
 Incluye pruebas  a la capa de servicios para corroborar que se comporte de la manera esperada. 
 Dichas pruebas no apuntan a una base de datos real, sino de una base de datos en memoria para facilitar la ejecución de las pruebas.
+
+##  Documentacion del API con Swagger OpenAPI 3
+
